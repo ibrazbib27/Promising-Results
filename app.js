@@ -1,7 +1,6 @@
-//Promise.then()
-/*
-upon changing the parameters the first  callback methos in the promise chain to the following, slowMath.add(1,1) the chain eventually gets rejected and produces an error message when initaing the .then() after slowMath.add(result, 98) executes. the reason the chain SlowMath function was rejected was due to the fact that a negative value was passed in as a paramter into the function, and if eith parameter is negative then the promise returns an error message. It is important to not that a negative value was passed as a parameter as a result of the execution of the previous SlowMath function, slowMath.subtract(result, 3), returning a negative value and that negative value was passed in as a parameter into add function weeexecuted the following code, return slowMath.add(result, 98) the promise detects a negative paramter values and refects the promise and returns an error message. Once a promise rejected the next procuedure is to find an error handler and it does so by locating the .catch() method at the end, that's where our error was logged, and just to emphasise once an error was detetcted in our promise chain the rest of the .then() methods in the chain were skipped and not proccessed, due to the fact that there were no error handling callback methods passed in as parameters within the .then() method blocks. Due to the .then() method blocks only containing success callback method parameters they were disregarded and the error handling method at the end of the chain, .catch(), was proccessed, since it's callback function handles and error parameter.
-*/
+// ***************Promise.then() Chaining****************
+
+// ***************OBJECTIVE #2****************
 /*
 let mathStuff = slowMath.add(2,6);
 mathStuff.then((result) => {
@@ -34,16 +33,26 @@ mathStuff.then((result) => {
      console.log(e);
 });
 */
+// ***************OBJECTIVE #4****************
+/*
+When we change the first step of the Promise chain operation and pass 1 and 1 as parameters, instead of 6 and 2, to the slowMath add function (to be specific slowMath.add(a,b)) we end up having an error message displayed in the console log ('Error: Error adding values -2 and 98.') after returning slowMath.add(result, 98). Just to be specific all the results from the function call in the promise chain have their results logged up until the slowMath.add(result, 98) is rejected, which just skips the rest of the .then() operations, beacuse the .then() function calls that are present in the code only have success function calls in each of their respective parameters. After we retun a function within a .then() call and then add a .then() to that previous call  the result that is returned at the end of the .then() calls bind to the successbfunction parameter in the next .then() call. since we do not have any reject function calls as a parameter in any of the .then() calls we skip past the rest of .then() calls until we reach the .catch(e) call at the end of the chain which accepts a rejected function call as a paramter and then we have out error message logged and the promise chain operation ends. 
+Passing any negative parameter value into any of the SlowMath functions results in rejection. In our case we passed the returned result of slowMath.subtract(result, 3), which yielded negative, into slowMath.add(result, 98) which initiated the proccess that I explained earlier.
+*/
 
 
-//async and wait promises
+
+
+
+
+//**********************Async/Await**********************
+/*
 async function doMath(){
 try{
   let result = await
   slowMath.add(6,2);
  
   console.log(result);
-    
+  
  result = await slowMath.multiply(result, 2);
   console.log(result);
     
@@ -68,6 +77,7 @@ result = await slowMath.remainder(result, 40);
     
 result = await slowMath.add(result, 32);
  console.log(`The final result is ${result}`);
+ 
 }
 catch (e) {
         console.log(e);
@@ -75,3 +85,4 @@ catch (e) {
        
 }
 doMath(); 
+*/
